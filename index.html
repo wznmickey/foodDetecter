@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>2022DormBook</title>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        name="viewport">
+</head>
+
+<body>
+    <script src="https://unpkg.com/leancloud-storage@4.12.2/dist/av-min.js"></script>
+    <div class="index">
+        多次提交以最后一次提交为准。
+        <p>名字<input id="name" placeholder="名字" title="名字"></p>
+        <p>宿舍楼<input id="dorm" placeholder="例：D20" title="宿舍楼"></p>
+        <p>房间号（3位）<input id="room" placeholder="例：101" title="房间号（3位）"></p>
+        <p>早上<select id="zao">
+                <option value="不要">不要</option>
+                <option value="普通">普通</option>
+                <option value="普通">普通2份</option>
+                <option value="清真">清真</option>
+                <option value="清真">清真2份</option>
+            </select>
+        <p>中午<select id="zhong">
+                <option value="不要">不要</option>
+                <option value="普通">普通</option>
+                <option value="普通">普通2份</option>
+                <option value="清真">清真</option>
+                <option value="清真">清真2份</option>
+            </select></p>
+        <p>晚上<select id="wan">
+                <option value="不要">不要</option>
+                <option value="普通">普通</option>
+                <option value="普通">普通2份</option>
+                <option value="清真">清真</option>
+                <option value="清真">清真2份</option>
+            </select></p>
+        </p>
+        <p><button onclick="commit()">提交</button></p>
+    </div>
+    </div>
+    <script>
+        AV.init({
+            appId: "kJ6qcsFfbfti7Nqfep4ixylL-9Nh9j0Va",
+            appKey: "v5gzDUgjj48PBDXNYIIoLYIY",
+            serverURL: "https://dormbook.wznmickey.com"
+        });
+        function commit() {
+            name = document.getElementById("name").value;
+            dorm = document.getElementById("dorm").value;
+            room = document.getElementById("room").value;
+            breakfast = document.getElementById("zao").value;
+            lunch = document.getElementById("zhong").value;
+            dinner = document.getElementById("wan").value;
+
+            const
+                Donator = AV.Object.extend('data');
+            const donator = new Donator();
+            donator.set('name', name);
+            donator.set('dorm', dorm);
+            donator.set('room', room);
+            donator.set('breakfast', breakfast);
+            donator.set('lunch', lunch);
+            donator.set('dinner', dinner);
+            donator.save().then((donator) => {
+                var newmessage = alert("成功。");
+            }, (error) => {
+                var newmessage = alert("出错，请检查。");
+            });
+        }
+    </script>
+</body>
+
+</html>
