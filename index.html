@@ -3,9 +3,7 @@
 
 <head>
     <title>2022DormBook</title>
-    <link rel="stylesheet" type="text/css" href="style1.css">
-    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        name="viewport">
+
 </head>
 
 <body>
@@ -65,6 +63,7 @@
             donator.set('dinner', dinner);
             donator.save().then((donator) => {
                 var newmessage = alert("成功。");
+                window.location.href = "./success.html";
             }, (error) => {
                 var newmessage = alert("出错，请检查。");
             });
